@@ -2,18 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 void main() => runApp(
-const MaterialApp(
-  debugShowCheckedModeBanner: false,
-  home:XylophoneApp() ,
-)
-  );
+      const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: XylophoneApp(),
+      ),
+    );
 
 class XylophoneApp extends StatelessWidget {
   const XylophoneApp({super.key});
 
-  void SoundPlay(int num){
-     final player = AudioPlayer();
-                     player.play(AssetSource('note$num.wav'));
+  void SoundPlay(int num) {
+    final player = AudioPlayer();
+    player.play(AssetSource('note$num.wav'));
+  }
+
+  Expanded buildkey({required Color color, required int SoundNum} ) {
+     return Expanded(
+      child: TextButton(
+        style: TextButton.styleFrom(
+            shape:  RoundedRectangleBorder(),
+            backgroundColor: color),
+        onPressed: () {
+          SoundPlay(SoundNum);
+        },
+        child:  Text('Click me'),
+      ),
+    );
   }
 
   @override
@@ -24,69 +38,13 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: TextButton(
-                   style: TextButton.styleFrom(shape: const RoundedRectangleBorder(),backgroundColor: Colors.red),
-                  onPressed: () {
-                   SoundPlay(1);
-                  },
-                  child: const Text('Click me'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                   style: TextButton.styleFrom(shape: const RoundedRectangleBorder(),backgroundColor: Colors.green),
-                  onPressed: () {
-                   SoundPlay(2);
-                  },
-                  child: const Text('Click me'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                   style: TextButton.styleFrom(shape: const RoundedRectangleBorder(),backgroundColor: Colors.blue),
-                  onPressed: () {
-                   SoundPlay(3);
-                  },
-                  child: const Text('Click me'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                   style: TextButton.styleFrom(shape: const RoundedRectangleBorder(),backgroundColor: const Color.fromARGB(255, 185, 255, 7)),
-                  onPressed: () {
-                   SoundPlay(4);
-                  },
-                  child: const Text('Click me'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                   style: TextButton.styleFrom(shape: const RoundedRectangleBorder(),backgroundColor: const Color.fromARGB(255, 255, 7, 214)),
-                  onPressed: () {
-                   SoundPlay(5);
-                  },
-                  child: const Text('Click me'),
-                ),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  style: TextButton.styleFrom(shape: const RoundedRectangleBorder(),backgroundColor: const Color.fromARGB(255, 255, 7, 44)),
-                  onPressed: () {
-                   SoundPlay(6);
-                  },
-                  child: const Text('Click me'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                   style: TextButton.styleFrom(shape: const RoundedRectangleBorder(),backgroundColor: Colors.amber),
-                  onPressed: () {
-                   SoundPlay(7);
-                  },
-                  child: const Text('Click me'),
-                ),
-              ),
+            buildkey(color: const Color.fromARGB(255, 235, 115, 106), SoundNum: 1),
+            buildkey(color: const Color.fromARGB(255, 215, 243, 33), SoundNum: 2),
+            buildkey(color: const Color.fromARGB(255, 70, 195, 74), SoundNum: 3),
+            buildkey(color: Colors.amber, SoundNum: 4),
+            buildkey(color: Colors.red, SoundNum: 5),
+            buildkey(color: const Color.fromARGB(255, 0, 153, 255), SoundNum: 6),
+            buildkey(color: Colors.pink, SoundNum: 7),
             ],
           ),
         ),
